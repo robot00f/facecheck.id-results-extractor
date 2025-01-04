@@ -15,7 +15,7 @@
     const styles = `
         .results-container {
             position: fixed;
-            top: 20px;
+            top: 70px;
             left: 20px;
             max-width: 400px;
             max-height: 80vh;
