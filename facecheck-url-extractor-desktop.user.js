@@ -24,6 +24,7 @@
             padding: 15px;
             border-radius: 8px;
             z-index: 9999;
+            display: none;
         }
         .result-item {
             display: flex;
