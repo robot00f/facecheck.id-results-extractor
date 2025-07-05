@@ -472,33 +472,39 @@
             return popup;
         };
 
-        const displayResultsDesktop = (results, popup, fimg) => {
-            const rect = fimg.getBoundingClientRect();
-            popup.style.left = `${rect.right - 155}px`;
-            popup.style.top = `${rect.top}px`;
+const displayResultsDesktop = (results, popup, fimg) => {
+    const rect = fimg.getBoundingClientRect();
+    popup.style.left = `${rect.right - 155}px`;
+    popup.style.top = `${rect.top}px`;
 
-            const resultsList = results.map((result, idx) => `
-                <li>
-                    <a href="${result.url}" target="_blank">${result.domain}</a>
-                    <span style="color:${result.color};">(${result.confidence}% - ${result.rating})</span>
-                    ${result.base64 ? `<button class="copy-btn" data-idx="${idx}">Copy image</button>` : ''}
-                </li>
-            `).join('');
+    // show Copy image button only if results[0] has base64
+    let copyBtnHtml = '';
+    if (results[0] && results[0].base64) {
+        copyBtnHtml = `<button class="copy-btn" data-idx="0" style="margin-bottom: 8px; width: 100%;">Copy image</button>`;
+    }
 
-            popup.innerHTML = `<ul>${resultsList}</ul>`;
-            popup.classList.add('visible');
+    const resultsList = results.map((result, idx) => `
+        <li>
+            <a href="${result.url}" target="_blank">${result.domain}</a>
+            <span style="color:${result.color};">(${result.confidence}% - ${result.rating})</span>
+        </li>
+    `).join('');
 
-            popup.querySelectorAll('.copy-btn').forEach(btn => {
-                btn.onclick = async (e) => {
-                    e.stopPropagation();
-                    const idx = parseInt(btn.getAttribute('data-idx'), 10);
-                    const base64 = results[idx].base64;
-                    if (base64) {
-                        await copyImageFromBase64(base64, btn);
-                    }
-                };
-            });
+    popup.innerHTML = `${copyBtnHtml}<ul>${resultsList}</ul>`;
+    popup.classList.add('visible');
+
+    // Add single copy button listener (if present)
+    const copyBtn = popup.querySelector('.copy-btn');
+    if (copyBtn) {
+        copyBtn.onclick = async (e) => {
+            e.stopPropagation();
+            const base64 = results[0].base64;
+            if (base64) {
+                await copyImageFromBase64(base64, copyBtn);
+            }
         };
+    }
+};
 
         const popup = createPopup();
         const processedFimgs = new WeakSet();
