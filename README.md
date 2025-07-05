@@ -26,7 +26,21 @@ As of now there is one version of the script usable on desktop and mobile.
    - Enhanced User Experience: Smooth animations, and responsive interactions.
 
    - Added in extra mobile functionality
- 
+
+---
+
+**New in the latest update:**
+
+- **Copy image button:** Now every result popup (both desktop and mobile) includes a "Copy image" button.
+  - Clicking "Copy image" copies the result image (converted to PNG) to your clipboard.
+  - The button displays a ✓ Copied! animation for feedback—no popup needed, works silently.
+  - This works on most modern browsers that support clipboard image writing.
+- **Better UX:** The copy button is available wherever results are shown—desktop popups and mobile overlays.
+- **No intrusive popups:** The previous "Image PNG copied..." alert has been removed; the copy animation is now inline on the button.
+- **All other features remain unchanged.**
+
+---
+
 ## How to Install
 
 ### For Desktop Browsers
@@ -60,8 +74,7 @@ I recommend watching a setup tutorial if you're confused about any of this.
 2. Enable the script and use the FaceCheck.id search.
 3. Will show the results on top of the picture below it (see the example)
 
-![image](https://github.com/user-attachments/assets/18a38c62-d444-4779-a372-d3ef1ee79a3b)
-
+![image](https://github.com/user-attachments/assets/4f6a790c-910c-43ab-a431-0b7de5808ad2)
 
 
 ### V2(Desktop):
@@ -69,8 +82,8 @@ I recommend watching a setup tutorial if you're confused about any of this.
 2. Hover your cursor over individual results.
 4. A popup will display URLs along with their confidence ratings.
 5. Click URLs to open in new tabs.
-![image](https://github.com/user-attachments/assets/e04ffa98-f9a6-44ce-a4b5-79466e388bac)
 
+![image](https://github.com/user-attachments/assets/600b8bd2-a50c-497f-9df1-cc71818c3f91)
 
 ## What is FaceCheck.id?
 
